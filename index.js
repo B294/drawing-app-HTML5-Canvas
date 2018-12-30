@@ -53,9 +53,7 @@ function changeColor() {
 function colorPicker() {
   currentColor = colorSelect.value;
   ctx.strokeStyle = currentTool !== 'eraser' ? colorSelect.value : 'white';
-  colors.forEach(color => {
-    color.classList.remove('active-color');
-  });
+  colors.forEach(color => color.classList.remove('active-color'));
 }
 
 function setTool() {
@@ -73,9 +71,7 @@ function setTool() {
 
 tools.forEach(tool => tool.addEventListener('click', setTool));
 
-colors.forEach(color => {
-  color.addEventListener('click', changeColor);
-});
+colors.forEach(color => color.addEventListener('click', changeColor));
 
 colorSelect.addEventListener('change', colorPicker);
 
@@ -84,13 +80,14 @@ brushSelect.addEventListener('click', () => {
   ctx.lineWidth = currentTool === 'pencil' ? 1 : brushSize;
 });
 
+button.addEventListener('click', download);
+
 canvas.addEventListener('mousedown', (e) => {
   isDrawing = true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
   draw(e);
 });
 
-button.addEventListener('click', download);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', () => isDrawing = false);
 canvas.addEventListener('mouseout', () => isDrawing = false); 

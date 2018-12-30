@@ -38,6 +38,27 @@ span {
   display: inline-flex;
 }
 
+button {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.596);
+  border-radius: 2px;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 3rem;
+  letter-spacing: 2px;
+  margin-top: 6rem;
+  transition: .1s;
+  width: 60%;
+}
+
+button:active {
+  background: rgb(248, 136, 136);
+}
+
+button:hover {
+  transform: scale(1.07);
+}
+
 .la {
   color: black;
   font-size: 1.2rem;
@@ -153,25 +174,4 @@ span {
 
 #colors span:nth-of-type(9) {
   background: saddlebrown;
-}
-
-button {
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.596);
-  border-radius: 2px;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 3rem;
-  letter-spacing: 2px;
-  margin-top: 6rem;
-  transition: .1s;
-  width: 60%;
-}
-
-button:active {
-  background: rgb(248, 136, 136);
-}
-
-button:hover {
-  transform: scale(1.07);
 }
