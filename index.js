@@ -83,20 +83,16 @@ function reset() {
 }
 
   //toolbar event listeners
-tools.forEach(tool => tool.addEventListener('click', setTool));
-
-colors.forEach(color => color.addEventListener('click', changeColor));
-
-colorSelect.addEventListener('change', colorPicker);
-
 brushSelect.addEventListener('click', () => {
   brushSize = brushSelect.value;
   ctx.lineWidth = currentTool === 'pencil' ? 1 : brushSize;
 });
-
+colorSelect.addEventListener('change', colorPicker);
 saveButton.addEventListener('click', downloadImage);
-
 resetButton.addEventListener('click', reset);
+
+tools.forEach(tool => tool.addEventListener('click', setTool));
+colors.forEach(color => color.addEventListener('click', changeColor));
 
   //canvas event listeners
 canvas.addEventListener('mousedown', (e) => {
