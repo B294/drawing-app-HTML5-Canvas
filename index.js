@@ -18,6 +18,8 @@ ctx.strokeStyle = 'black';
 
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+const startingCanvas = canvas.toDataURL();
+
 let brushSize    = '10px',
     currentColor = 'black',
     currentTool  = 'pencil',
@@ -70,6 +72,8 @@ function downloadImage(e) {
 }
 
 function reset() {
+  if (startingCanvas == canvas.toDataURL()) return;
+
   if (!confirm('Are you sure you want to delete all of your work?')) return;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
