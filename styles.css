@@ -1,0 +1,164 @@
+* {
+  font-family: 'Open Sans', sans-serif;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 18px;
+  overflow: hidden;
+  text-align: center;
+  user-select: none;
+}
+
+canvas {
+  background: white;
+  cursor: crosshair;
+  width: 90%;
+}
+
+label {
+  background: white;
+  display: block;
+  margin-top: 1rem;
+  padding: 5px;
+  text-align: center;
+}
+
+select {
+  background: white;
+  color: black;
+  cursor: pointer;
+  text-align: center;
+}
+
+span {
+  background: white;
+  display: inline-flex;
+}
+
+.la {
+  color: black;
+  font-size: 1.2rem;
+  margin-left: .7rem;
+  padding: 5px;
+}
+
+#size {
+  background: white;
+  display: block;
+  margin: 7px 0;
+  padding: .5rem 0;
+  text-align: center;
+  width: 100%;
+}
+
+#container {
+  display: flex;
+}
+
+#tool-bar {
+  background: gray;
+  border-right: 2px solid rgb(54, 54, 54);
+  height: 100vh;
+  width: 10%;
+}
+
+#tools span {
+  cursor: pointer;
+  display: block;
+  height: 2rem;
+  padding: 10px 0;
+  text-align: left;
+  transition: .1s;
+  width: 100%;
+}
+
+#tools span:hover {
+  font-size: 1.35rem;
+}
+
+.active {
+  background: rgb(121, 188, 250);
+}
+
+#colors {
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+#colors span {
+  background: white;
+  cursor: pointer;
+  height: 20px;
+  padding: 10px;
+  margin: 2px 0;
+  width: 20px;
+}
+
+#color-picker {
+  background: white;
+  border: none;
+  cursor: pointer;
+  height: 80px;;
+  padding: 0;
+  width: 100%;
+}
+
+#colors span:nth-of-type(1) {
+  background: black;
+}
+
+#colors span:nth-of-type(2) {
+  background: white;
+}
+
+#colors span:nth-of-type(3) {
+  background: red;
+}
+
+#colors span:nth-of-type(4) {
+  background: orange;
+}
+
+#colors span:nth-of-type(5) {
+  background: yellow;
+}
+
+#colors span:nth-of-type(6) {
+  background: green;
+}
+
+#colors span:nth-of-type(7) {
+  background: blue;
+}
+
+#colors span:nth-of-type(8) {
+  background: purple;
+}
+
+#colors span:nth-of-type(9) {
+  background: violet;
+}
+
+button {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.596);
+  border-radius: 2px;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 3rem;
+  letter-spacing: 2px;
+  margin-top: 6rem;
+  transition: .1s;
+  width: 60%;
+}
+
+button:active {
+  background: rgb(248, 136, 136);
+}
+
+button:hover {
+  transform: scale(1.07)
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <link rel='stylesheet' href='https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css'>
+  <link rel='stylesheet' href='styles.css' class='css'>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+  <title>Drawing App</title>
+</head>
+<body>
+  <div id='container'>
+    <div id='tool-bar'>
+      <div id='tools'>
+        <span class='active' data-name='pencil'><i class='la la-pencil'></i> Pencil</span>
+        <span data-name='brush'><i class='la la-paint-brush'></i> Brush</span>
+        <span data-name='eraser'><i class='la la-eraser'></i> Eraser</span>
+      </div>
+      <div id='size'>Brush/Eraser size:
+        <select>
+          <option value='10' selected>10px</option>
+          <option value='20'>20px</option>
+          <option value='30'>30px</option>
+          <option value='40'>40px</option>
+          <option value='50' data-size='50'>50px</option>
+        </select>
+      </div>
+      <div id='colors'>
+        <span data-color='black'></span>
+        <span data-color='white'></span>
+        <span data-color='red'></span>
+        <span data-color='orange'></span>
+        <span data-color='yellow'></span>
+        <span data-color='green'></span>
+        <span data-color='blue'></span>
+        <span data-color='purple'></span>
+        <span data-color='violet'></span>
+      </div>
+      <label>Custom Color</label>
+      <input type='color' id='color-picker' value='#cce6ff'></input>
+      <a href='' download='' target='_blank'><button>save</button></a>
+    </div>
+    <canvas id='draw'></canvas>
+  </div>
+  <script src='index.js'></script>
+</body>
+</html>
