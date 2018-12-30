@@ -39,6 +39,7 @@ span {
   display: inline-flex;
 }
 
+
 button {
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.596);
@@ -47,18 +48,32 @@ button {
   font-weight: bold;
   height: 3rem;
   letter-spacing: 2px;
-  margin-top: 6rem;
+  margin-top: 5rem;
   transition: .1s;
   width: 60%;
 }
 
-button:active {
-  background: rgb(248, 136, 136);
-}
 
 button:hover {
   transform: scale(1.07);
 }
+
+#reset {
+  background: rgba(255, 0, 0, 0.603);
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.171);
+  height: 2.2rem;
+  width: 55%;
+}
+
+#save:active {
+  background: rgb(248, 136, 136);
+}
+
+#reset:active {
+  background: rgb(126, 10, 10);
+}
+
 
 .la {
   color: black;

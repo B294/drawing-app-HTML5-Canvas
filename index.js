@@ -2,6 +2,7 @@ const brushSelect = document.querySelector('select'),
       canvas      = document.querySelector('#draw'),
       colorSelect = document.querySelector('#color-picker'),
       colors      = document.querySelectorAll('#colors span'),
+      resetButton = document.querySelector('#reset'),
       saveButton  = document.querySelector('a'),
       tools       = document.querySelectorAll('#tools span');
 
@@ -35,13 +36,6 @@ const draw = (e) => {
 }
 
   //normal functions used here to preverse "this" from event listeners
-function downloadImage(e) {
-  this.download = prompt('Please name your picture:');
-  if (this.download === 'null') return e.preventDefault();
-
-  this.href = canvas.toDataURL('image/png');
-}
-
 function changeColor() {
   currentColor = this.dataset.color;
   ctx.strokeStyle = currentTool !== 'eraser' ? this.dataset.color : 'white';
@@ -68,6 +62,20 @@ function setTool() {
   ctx.strokeStyle = this.dataset.name === 'eraser' ? 'white' : currentColor;
 }
 
+function downloadImage(e) {
+  this.download = prompt('Please name your picture:');
+  if (this.download === 'null') return e.preventDefault();
+
+  this.href = canvas.toDataURL('image/png');
+}
+
+function reset() {
+  if (!confirm('Are you sure you want to delete all of your work?')) return;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
   //toolbar event listeners
 tools.forEach(tool => tool.addEventListener('click', setTool));
 
@@ -81,6 +89,8 @@ brushSelect.addEventListener('click', () => {
 });
 
 saveButton.addEventListener('click', downloadImage);
+
+resetButton.addEventListener('click', reset);
 
   //canvas event listeners
 canvas.addEventListener('mousedown', (e) => {
