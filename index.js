@@ -1,7 +1,7 @@
 const brushSelect = document.querySelector('select'),
       button      = document.querySelector('a'),
       canvas      = document.querySelector('#draw'),
-      colorPicker = document.querySelector('#color-picker'),
+      colorSelect = document.querySelector('#color-picker'),
       colors      = document.querySelectorAll('#colors span'),
       tools       = document.querySelectorAll('#tools span');
 
@@ -46,7 +46,22 @@ const download = (e) => {
 
 function changeColor() {
   currentColor = this.dataset.color;
-  ctx.strokeStyle = currentColor;
+  ctx.strokeStyle = currentTool !== 'eraser' ? this.dataset.color : 'white';
+  colors.forEach(color => {
+    if (color === this) {
+      color.classList.add('active-color');
+    } else {
+      color.classList.remove('active-color');
+    }
+  })
+}
+
+function colorPicker() {
+  currentColor = colorSelect.value;
+  ctx.strokeStyle = currentTool !== 'eraser' ? colorSelect.value : 'white';
+  colors.forEach(color => {
+    color.classList.remove('active-color');
+  });
 }
 
 function setTool() {
@@ -55,13 +70,13 @@ function setTool() {
     currentTool = 'pencil';
   } else {
     ctx.lineWidth = brushSize > 1 ? brushSize : 10;
-    currentTool = 'brush';
+    currentTool = this.dataset.name === 'eraser' ? 'eraser' : 'brush';
   }
   tools.forEach(tool => {
     if (tool === this) {
-      tool.classList.add('active');
+      tool.classList.add('active-tool');
     } else {
-      tool.classList.remove('active');
+      tool.classList.remove('active-tool');
     }
   });
   ctx.lineCap = this.dataset.name === 'eraser' ? 'square' : 'round';
@@ -74,10 +89,7 @@ colors.forEach(color => {
   color.addEventListener('click', changeColor);
 });
 
-colorPicker.addEventListener('change', () => {
-  currentColor = colorPicker.value;
-  ctx.strokeStyle = currentColor;
-});
+colorSelect.addEventListener('change', colorPicker);
 
 brushSelect.addEventListener('click', () => {
   brushSize = brushSelect.value;
@@ -87,6 +99,7 @@ brushSelect.addEventListener('click', () => {
 canvas.addEventListener('mousedown', (e) => {
   isDrawing = true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
+  draw(e);
 });
 
 button.addEventListener('click', download);

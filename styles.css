@@ -79,22 +79,35 @@ span {
   font-size: 1.35rem;
 }
 
-.active {
+.active-tool {
   background: rgb(121, 188, 250);
 }
 
 #colors {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   margin: 1rem 0;
+}
+
+span {
+  padding: 10px;
+  margin: 2px 0;
 }
 
 #colors span {
   background: white;
   cursor: pointer;
   height: 20px;
-  padding: 10px;
-  margin: 2px 0;
+  transition: .1s;
   width: 20px;
+}
+
+.active-color {
+  transform: scale(1.1);
+  border: 1px solid white;
+  box-sizing: content-box;
+  margin: 0;
 }
 
 #color-picker {
@@ -139,7 +152,7 @@ span {
 }
 
 #colors span:nth-of-type(9) {
-  background: violet;
+  background: saddlebrown;
 }
 
 button {
@@ -160,5 +173,5 @@ button:active {
 }
 
 button:hover {
-  transform: scale(1.07)
+  transform: scale(1.07);
 }
