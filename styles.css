@@ -59,7 +59,7 @@ button:hover {
 }
 
 #reset {
-  background: rgba(255, 0, 0, 0.835);
+  background: rgb(255, 41, 41);
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.171);
   height: 2.2rem;
@@ -68,12 +68,11 @@ button:hover {
 }
 
 #save:active {
-  background: rgb(248, 136, 136);
+  background: rgb(209, 209, 209);
 }
 
 #reset:active {
-  background: rgb(126, 10, 10);
-}
+  background: rgb(204, 31, 31);}
 
 
 .la {

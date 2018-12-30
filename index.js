@@ -65,6 +65,8 @@ function setTool() {
 }
 
 function downloadImage(e) {
+  if (startingCanvas === canvas.toDataURL()) return e.preventDefault();
+
   this.download = prompt('Please name your picture:');
   if (this.download === 'null') return e.preventDefault();
 
@@ -72,7 +74,7 @@ function downloadImage(e) {
 }
 
 function reset() {
-  if (startingCanvas == canvas.toDataURL()) return;
+  if (startingCanvas === canvas.toDataURL()) return;
 
   if (!confirm('Are you sure you want to delete all of your work?')) return;
 
