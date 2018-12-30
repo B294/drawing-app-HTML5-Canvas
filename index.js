@@ -1,12 +1,12 @@
 const brushSelect = document.querySelector('select'),
-      button      = document.querySelector('a'),
       canvas      = document.querySelector('#draw'),
       colorSelect = document.querySelector('#color-picker'),
       colors      = document.querySelectorAll('#colors span'),
+      saveButton  = document.querySelector('a'),
       tools       = document.querySelectorAll('#tools span');
 
 canvas.height = window.innerHeight ;
-canvas.width  = window.innerWidth * .9;
+canvas.width  = window.innerWidth * .9;  //90% canvas width, 10% toolbar width
 
 const ctx = canvas.getContext('2d');
 
@@ -34,14 +34,12 @@ const draw = (e) => {
   [lastX, lastY] = [e.offsetX, e.offsetY];
 }
 
-const download = (e) => {
-  const link = canvas.toDataURL('image/png');
-  button.download = prompt('Please name your picture:');
-  if (button.download === 'null') {
+  //normal functions used here to preverse "this" from event listeners
+function downloadImage(e) {
+  this.download = prompt('Please name your picture:');
+  if (this.download === 'null') return e.preventDefault();
 
-    return e.preventDefault();
-  }
-  button.href = link;
+  this.href = canvas.toDataURL('image/png');
 }
 
 function changeColor() {
@@ -51,11 +49,12 @@ function changeColor() {
 }
 
 function colorPicker() {
-  currentColor = colorSelect.value;
-  ctx.strokeStyle = currentTool !== 'eraser' ? colorSelect.value : 'white';
+  currentColor = this.value;
+  ctx.strokeStyle = currentTool !== 'eraser' ? this.value : 'white';
   colors.forEach(color => color.classList.remove('active-color'));
 }
 
+  //currently everything is setup to work with 3 tool types.  If more tools are added, the conditionals will have to be reworked
 function setTool() {
   if (this.dataset.name === 'pencil') {
     ctx.lineWidth = 1;
@@ -69,6 +68,7 @@ function setTool() {
   ctx.strokeStyle = this.dataset.name === 'eraser' ? 'white' : currentColor;
 }
 
+  //toolbar event listeners
 tools.forEach(tool => tool.addEventListener('click', setTool));
 
 colors.forEach(color => color.addEventListener('click', changeColor));
@@ -80,8 +80,9 @@ brushSelect.addEventListener('click', () => {
   ctx.lineWidth = currentTool === 'pencil' ? 1 : brushSize;
 });
 
-button.addEventListener('click', download);
+saveButton.addEventListener('click', downloadImage);
 
+  //canvas event listeners
 canvas.addEventListener('mousedown', (e) => {
   isDrawing = true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
