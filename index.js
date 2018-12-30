@@ -36,7 +36,7 @@ const draw = (e) => {
 
 const download = (e) => {
   const link = canvas.toDataURL('image/png');
-  button.download = prompt('Please name your file');
+  button.download = prompt('Please name your picture:');
   if (button.download === 'null') {
 
     return e.preventDefault();
@@ -47,13 +47,7 @@ const download = (e) => {
 function changeColor() {
   currentColor = this.dataset.color;
   ctx.strokeStyle = currentTool !== 'eraser' ? this.dataset.color : 'white';
-  colors.forEach(color => {
-    if (color === this) {
-      color.classList.add('active-color');
-    } else {
-      color.classList.remove('active-color');
-    }
-  })
+  colors.forEach(color => color === this ? color.classList.add('active-color') : color.classList.remove('active-color'));
 }
 
 function colorPicker() {
@@ -72,13 +66,7 @@ function setTool() {
     ctx.lineWidth = brushSize > 1 ? brushSize : 10;
     currentTool = this.dataset.name === 'eraser' ? 'eraser' : 'brush';
   }
-  tools.forEach(tool => {
-    if (tool === this) {
-      tool.classList.add('active-tool');
-    } else {
-      tool.classList.remove('active-tool');
-    }
-  });
+  tools.forEach(tool => tool === this ? tool.classList.add('active-tool') : tool.classList.remove('active-tool'));
   ctx.lineCap = this.dataset.name === 'eraser' ? 'square' : 'round';
   ctx.strokeStyle = this.dataset.name === 'eraser' ? 'white' : currentColor;
 }
