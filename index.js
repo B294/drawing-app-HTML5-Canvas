@@ -25,16 +25,26 @@ let brushSize    = '10px',
     currentTool  = 'pencil',
     isDrawing    = false,
     lastX        = 0,
-    lastY        = 0;
+    lastY        = 0,
+    rect         = '';
 
-const draw = (e) => {
+const continuousDraw = (e) => {
+  e.preventDefault();
   if (!isDrawing) return;
-
+   
   ctx.beginPath();
   ctx.moveTo(lastX, lastY);
-  ctx.lineTo(e.offsetX, e.offsetY);
+  e.touches ? ctx.lineTo(e.touches[0].pageX - rect.left, e.touches[0].pageY - rect.top) : ctx.lineTo(e.offsetX, e.offsetY);
+  [lastX, lastY] = e.touches ? [e.touches[0].pageX - rect.left, e.touches[0].pageY - rect.top] : [e.offsetX, e.offsetY];
   ctx.stroke();
-  [lastX, lastY] = [e.offsetX, e.offsetY];
+}
+
+const startDraw = (e) => {
+  e.preventDefault();
+  rect = e.target.getBoundingClientRect();
+  isDrawing = true;
+  [lastX, lastY] = e.touches ? [e.touches[0].pageX - rect.left, e.touches[0].pageY - rect.top] : [e.offsetX, e.offsetY];
+  draw(e);
 }
 
   //normal functions used here to preverse "this" from event listeners
@@ -94,13 +104,10 @@ resetButton.addEventListener('click', reset);
 tools.forEach(tool => tool.addEventListener('click', setTool));
 colors.forEach(color => color.addEventListener('click', changeColor));
 
-  //canvas event listeners
-canvas.addEventListener('mousedown', (e) => {
-  isDrawing = true;
-  [lastX, lastY] = [e.offsetX, e.offsetY];
-  draw(e);
-});
-
-canvas.addEventListener('mousemove', draw);
+  // canvas event listeners
+canvas.addEventListener('mousedown', startDraw);
+canvas.addEventListener('mousemove', continuousDraw);
 canvas.addEventListener('mouseup', () => isDrawing = false);
-canvas.addEventListener('mouseout', () => isDrawing = false); 
+canvas.addEventListener('touchstart', startDraw);
+canvas.addEventListener('touchmove', continuousDraw);
+canvas.addEventListener('touchend', () => isDrawing = false);
