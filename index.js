@@ -44,7 +44,7 @@ const startDraw = (e) => {
   rect = e.target.getBoundingClientRect();
   isDrawing = true;
   [lastX, lastY] = e.touches ? [e.touches[0].pageX - rect.left, e.touches[0].pageY - rect.top] : [e.offsetX, e.offsetY];
-  draw(e);
+  continuousDraw(e);
 }
 
   //normal functions used here to preverse "this" from event listeners
